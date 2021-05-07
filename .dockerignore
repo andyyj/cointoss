@@ -1,0 +1,5 @@
+.git
+.dockerignore
+.env
+cointoss/node_modules/
+cointoss/vendor/bundle/
