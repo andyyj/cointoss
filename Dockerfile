@@ -1,11 +1,5 @@
 # Dockerfile development version
-FROM ruby:2.7.2 AS cointoss-development
-
-ARG USER_ID
-ARG GROUP_ID
-
-RUN addgroup --gid $GROUP_ID user
-RUN adduser --disabled-password --gecos '' --uid $USER_ID --gid $GROUP_ID user
+FROM ruby:3.0.2-buster AS cointoss-development
 
 RUN curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg -o /root/yarn-pubkey.gpg && apt-key add /root/yarn-pubkey.gpg
 RUN echo "deb https://dl.yarnpkg.com/debian/ stable main" > /etc/apt/sources.list.d/yarn.list
@@ -20,7 +14,5 @@ RUN rm -rf node_modules vendor
 RUN gem install rails bundler
 RUN bundle install
 RUN yarn install
-RUN chown -R user:user /opt/app
 
-USER $USER_ID
 CMD bundle exec unicorn -c config/unicorn.rb
