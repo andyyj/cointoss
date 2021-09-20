@@ -76,6 +76,11 @@ Rails.application.configure do
 
   # Whitelist Docker Host - Rails have a security features that blocks access from unknown sources.
   # We want our different docker containers to communicate with each other,
-  # so we need to whitelist the conintoss container
-  config.hosts << "conintoss"
+  # so we need to whitelist the cointoss container
+  config.hosts << "cointoss"
+
+  # Fix for assets not loading
+  logger = ActiveSupport::Logger.new(STDOUT)
+  logger.formatter = config.log_formatter
+  config.logger = ActiveSupport::TaggedLogging.new(logger)
 end

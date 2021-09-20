@@ -1,0 +1,12 @@
+<h1> Coin Toss</h1>
+<div class="row">
+  <div class="col-sm-12"><h3>HEADS: <%= @coin_toss.heads %></h3></div>
+  <div class="col-sm-12"><h3>TAILS: <%= @coin_toss.tails %></h3></div>
+  <div class="col-sm-12">
+    <% if @coin_toss.is_coin_tossed %>
+      <h3>RESULT: <%= @coin_toss[@coin_toss.result.to_sym] %></h3>
+    <% else %>
+      <%= link_to "Toss Coin", toss_coin_path(@coin_toss.id), class: "btn btn-primary" %>
+    <% end %>
+  </div>
+</div>

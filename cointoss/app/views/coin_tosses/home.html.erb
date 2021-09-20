@@ -1,0 +1,38 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Coin Tosses</h1>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th>Heads</th>
+      <th>Tails</th>
+      <th>Result</th>
+      <th>Actions</th>
+      <th colspan="4"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @coin_tosses.each do |coin_toss| %>
+      <tr>
+        <td><%= coin_toss.heads %></td>
+        <td><%= coin_toss.tails %></td>
+        <td>
+          <% if coin_toss.is_coin_tossed %>
+            <%= coin_toss[coin_toss.result.to_sym] %>
+          <% else %>
+            Coin not tossed yet
+          <% end %>
+        </td>
+        <td>
+          <%= link_to "Show", coin_toss_path(coin_toss) %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+<%= link_to "New Coin Toss", coin_tosses_new_path %> |
+<%= link_to "View Tossed", root_path(is_coin_tossed: true) %> |
+<%= link_to "View Not Tossed", root_path(is_coin_tossed: false) %> |
+<%= link_to "View All", coin_tosses_path %>
